@@ -1,1 +1,0 @@
-# praktika4ikbo-16-17

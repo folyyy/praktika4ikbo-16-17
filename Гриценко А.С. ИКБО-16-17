@@ -1,0 +1,81 @@
+# praktika4ikbo-16-17
+
+________________________________
+Файл mouseGame.java
+
+package javaapplication1;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class mouseGame extends JFrame {
+    public int milScore = 0;
+    public int madScore = 0;
+    public String lScorer = "N/A";
+    public String theWinner = "DRAW";
+    
+    public mouseGame() {
+        super("Hello");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700,700);
+        setLayout(new BorderLayout()); 
+        JLabel res = new JLabel("Result: 0 X 0");
+        JLabel lscore = new JLabel("Last Scorer: N/A");
+        JLabel winner = new JLabel("Winner: DRAW");
+
+        add(res,BorderLayout.SOUTH);
+        add(lscore,BorderLayout.CENTER);
+        add(winner,BorderLayout.NORTH);
+        
+        JButton milan = new JButton("AC Milan");
+        add(milan,BorderLayout.WEST);
+        milan.addMouseListener(new MouseAdapter() { 
+            public void mouseClicked(MouseEvent me) {
+                milScore++;
+                res.setText("Result: " + milScore + " X " + madScore);
+                lScorer = "AC Milan";
+                lscore.setText("Last Scorer: " + lScorer);
+                checkWinner(winner);
+            }            
+        });
+
+                 
+        JButton madrid = new JButton("Real Madrid");
+        add(madrid,BorderLayout.EAST);
+        madrid.addMouseListener(new MouseAdapter() { 
+            public void mouseClicked(MouseEvent me) {
+                madScore++;
+                res.setText("Result: " + milScore + " X " + madScore);
+                lScorer = "Real Madrid";
+                lscore.setText("Last Scorer: " +lScorer);
+                checkWinner(winner);
+            }            
+        });
+        
+    }
+    
+        public void checkWinner(JLabel winner) {
+            if (milScore > madScore)
+                winner.setText("Winner: AC Milan"); 
+            else if (madScore > milScore)
+                winner.setText("Winner: Real Madrid");
+            else if (madScore == milScore)
+                winner.setText("Winner: DRAW");
+        }
+    
+}
+
+________________________________
+Файл JavaApplication1.java
+
+package javaapplication1;
+
+public class JavaApplication1 {
+    
+    public static void main(String[] args) {
+        new mouseGame().setVisible(true); 
+    }
+    
+}
+
